@@ -66,7 +66,7 @@ const steps = [
 // SVG path that runs through the icon centers
 // ViewBox 1000×650: top row icons at y=140, bottom row at y=450, midpoint at y=295
 const svgPath =
-  "M 166.7 140 L 833.3 140 C 940 140, 940 295, 833.3 295 L 166.7 295 C 60 295, 60 450, 166.7 450 L 833.3 450";
+  "M 166.7 140 L 840.3 140 C 960 140, 960 295, 833.3 295 L 166.7 295 C 60 295, 60 450, 166.7 450 L 833.3 450";
 
 export function Process() {
   return (
