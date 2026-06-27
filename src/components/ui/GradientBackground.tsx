@@ -26,10 +26,18 @@ export function GradientBackground() {
       animationId = requestAnimationFrame(move);
     }
 
+    const handleMouseMove = (event: MouseEvent) => {
+      tgX = event.clientX;
+      tgY = event.clientY;
+      hasMoved = true;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
     move();
 
     return () => {
       cancelAnimationFrame(animationId);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -14,6 +15,7 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,11 +26,13 @@ export function Navbar() {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
     setIsMobileMenuOpen(false);
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+    if (pathname === "/") {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -57,7 +61,7 @@ export function Navbar() {
             {navLinks.map((link) => (
               <a
                 key={link.label}
-                href={link.href}
+                href={pathname === "/" ? link.href : `/${link.href}`}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="relative text-sm font-medium text-white/60 hover:text-white transition-colors duration-300 group"
               >
@@ -66,7 +70,7 @@ export function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href={pathname === "/" ? "#contact" : "/#contact"}
               onClick={(e) => handleNavClick(e, "#contact")}
               className="px-6 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105"
             >
@@ -98,7 +102,7 @@ export function Navbar() {
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.label}
-                  href={link.href}
+                  href={pathname === "/" ? link.href : `/${link.href}`}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="text-3xl font-bold tracking-tight text-white hover:text-white/70 transition-colors"
                   initial={{ opacity: 0, y: 20 }}
@@ -110,7 +114,7 @@ export function Navbar() {
                 </motion.a>
               ))}
               <motion.a
-                href="#contact"
+                href={pathname === "/" ? "#contact" : "/#contact"}
                 onClick={(e) => handleNavClick(e, "#contact")}
                 className="px-8 py-3 bg-white text-black text-lg font-bold rounded-full hover:bg-gray-100 transition-all"
                 initial={{ opacity: 0, y: 20 }}

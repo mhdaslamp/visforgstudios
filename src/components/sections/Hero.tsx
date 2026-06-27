@@ -72,9 +72,9 @@ export function Hero() {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          Turning Ideas Into
+          We Craft Content
           <br />
-          <span className="text-white/50">Visual Experiences</span>
+          <span className="text-white/50">That Converts</span>
         </motion.h1>
 
         <motion.p
