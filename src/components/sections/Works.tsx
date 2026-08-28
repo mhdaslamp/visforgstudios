@@ -14,7 +14,8 @@ const projects = [
     aspect: "aspect-video",
     gradient: "from-blue-900/30 via-indigo-900/20 to-transparent",
     accent: "bg-blue-500/20",
-    video: "/videos/The_Ladder_Completed.mp4",
+    youtubeId: "BwNHhlfvlE4",
+    isShort: false,
   },
   {
     id: 2,
@@ -24,7 +25,8 @@ const projects = [
     aspect: "aspect-[9/16]",
     gradient: "from-emerald-900/30 via-teal-900/20 to-transparent",
     accent: "bg-emerald-500/20",
-    video: "/videos/Reel_Edit_01.mp4",
+    youtubeId: "d9jqGtE2eG0",
+    isShort: true,
   },
   {
     id: 3,
@@ -34,7 +36,8 @@ const projects = [
     aspect: "aspect-[9/16]",
     gradient: "from-orange-900/30 via-red-900/20 to-transparent",
     accent: "bg-orange-500/20",
-    video: "/videos/vaazha 2 motion poster.mp4",
+    youtubeId: "bUb1RDkV1IE",
+    isShort: true,
   },
   {
     id: 4,
@@ -44,7 +47,8 @@ const projects = [
     aspect: "aspect-video",
     gradient: "from-purple-900/30 via-blue-900/20 to-transparent",
     accent: "bg-purple-500/20",
-    video: "/videos/laptop.mp4",
+    youtubeId: "vsD9XBb0CeU",
+    isShort: false,
   },
 ];
 
@@ -59,12 +63,24 @@ function VideoCard({
   isMuted: boolean;
   onToggleMute: (projectId: number) => void;
 }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const toggleMute = (e: React.MouseEvent) => {
     e.stopPropagation();
     onToggleMute(project.id);
   };
+
+  // Update iframe mute state
+  useEffect(() => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      const message = isMuted
+        ? '{"event":"command","func":"mute","args":""}'
+        : '{"event":"command","func":"unMute","args":""}';
+      iframeRef.current.contentWindow.postMessage(message, "*");
+    }
+  }, [isMuted]);
+
+  const embedUrl = `https://www.youtube.com/embed/${project.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${project.youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
 
   return (
     <AnimatedSection
@@ -74,16 +90,13 @@ function VideoCard({
       <div
         className={`group relative overflow-hidden rounded-2xl bg-zinc-900 border border-white/[0.06] ${project.aspect} min-h-[200px]`}
       >
-        {/* Auto-playing video background */}
-        <video
-          ref={videoRef}
-          src={project.video}
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-          preload="auto"
+        {/* YouTube embed */}
+        <iframe
+          ref={iframeRef}
+          src={embedUrl}
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          allow="autoplay; encrypted-media"
+          style={{ border: 'none' }}
         />
 
         {/* Hover overlay */}
@@ -98,7 +111,7 @@ function VideoCard({
         </button>
 
         {/* Desktop hover content */}
-        <div className="hidden md:flex relative z-10 p-6 md:p-8 h-full flex-col justify-end">
+        <div className="hidden md:flex relative z-10 p-6 md:p-8 h-full flex-col justify-end pointer-events-none">
           <div className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
             <p className="text-sm text-white/60 mb-1 font-medium tracking-wide uppercase">
               {project.category}
@@ -110,7 +123,7 @@ function VideoCard({
         </div>
 
         {/* Always-visible content for mobile */}
-        <div className="flex md:hidden relative z-10 p-5 h-full flex-col justify-end">
+        <div className="flex md:hidden relative z-10 p-5 h-full flex-col justify-end pointer-events-none">
           <p className="text-xs text-white/50 mb-1 uppercase tracking-wider">
             {project.category}
           </p>
@@ -206,12 +219,11 @@ export function Works() {
               >
                 <X size={20} />
               </button>
-              <video
-                src={activeProject.video}
-                className="w-full h-full object-contain"
-                controls
-                autoPlay
-                playsInline
+              <iframe
+                src={`https://www.youtube.com/embed/${activeProject.youtubeId}?autoplay=1&mute=0&controls=1&enablejsapi=1`}
+                className="w-full h-full"
+                allow="autoplay; encrypted-media"
+                style={{ border: 'none' }}
               />
             </motion.div>
           </motion.div>
