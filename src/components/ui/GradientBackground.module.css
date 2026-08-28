@@ -9,6 +9,7 @@
   --color5: 110, 115, 125;
   --color-interactive: 155, 150, 160;
   --circle-size: 20%;
+  --interactive-size: 350px;
   --blending: hard-light;
 
   position: fixed;
@@ -173,9 +174,9 @@
     )
     no-repeat;
   mix-blend-mode: var(--blending);
-  width: 100%;
-  height: 100%;
-  top: -50%;
-  left: -50%;
+  width: var(--interactive-size);
+  height: var(--interactive-size);
+  top: calc(var(--interactive-size) / -2);
+  left: calc(var(--interactive-size) / -2);
   opacity: 0.7;
 }

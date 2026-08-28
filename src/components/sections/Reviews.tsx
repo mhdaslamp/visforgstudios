@@ -5,24 +5,24 @@ import { Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Sarah Mitchell",
-    role: "Marketing Director",
-    text: "Visforg Studio transformed our product launch campaign with stunning visuals. Their attention to detail is unmatched.",
+    name: "Armaan Zeyad",
+    role: "Head of Products at Flamingo",
+    text: "Visforg Studios did a great job visualising Franklead.io. They transformed our SaaS product into a clear, engaging, and visually impressive video.",
   },
   {
-    name: "James Chen",
-    role: "Startup Founder",
-    text: "The animations and editing quality exceeded our expectations. They truly understood our brand vision.",
+    name: "Mubashir",
+    role: "Client",
+    text: "Great video editing and attention to detail. The final output was creative, polished, and exactly what we were looking for.",
   },
   {
-    name: "Priya Sharma",
-    role: "Brand Manager",
-    text: "Professional, creative, and always delivers on time. Visforg Studio is our go-to for all visual content.",
+    name: "Gangadas",
+    role: "KGECO Products",
+    text: "Visforg Studios created an excellent product visualisation video that presented our product clearly and professionally.",
   },
   {
-    name: "Alex Rodriguez",
-    role: "Creative Director",
-    text: "Working with Visforg was seamless. The 3D product visualizations they created were absolutely stunning and elevated our entire campaign.",
+    name: "Zidan",
+    role: "Client",
+    text: "Excellent video editing with smooth visuals and creative execution. The final video turned out really impressive.",
   },
 ];
 

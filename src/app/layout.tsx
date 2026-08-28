@@ -5,7 +5,6 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 import { LoadingScreen } from "@/components/ui/LoadingScreen";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { GradientBackground } from "@/components/ui/GradientBackground";
 
 const inter = Inter({
@@ -55,14 +54,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} antialiased overflow-x-hidden`}>
         <GradientBackground />
         <LoadingScreen />
         <CustomCursor />
         <SmoothScrollProvider>
           <Navbar />
           <main className="min-h-screen relative z-[1]">{children}</main>
-          <Footer />
+
         </SmoothScrollProvider>
       </body>
     </html>

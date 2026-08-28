@@ -2,21 +2,15 @@
 
 import { AnimatedSection } from "@/components/animations/AnimatedSection";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { MessageCircle, Instagram, Linkedin, Globe } from "lucide-react";
+import { MessageCircle, Instagram, Globe } from "lucide-react";
 
 const socialLinks = [
   { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/7511152194" },
   {
     icon: Instagram,
     label: "Instagram",
-    href: "https://instagram.com/visforgstudio",
+    href: "https://www.instagram.com/aadil.eeyyy/",
   },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    href: "https://linkedin.com/company/visforgstudio",
-  },
-  { icon: Globe, label: "Behance", href: "https://behance.net/visforgstudio" },
 ];
 
 export function Contact() {

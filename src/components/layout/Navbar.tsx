@@ -48,7 +48,7 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, delay: 2.2, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
           <Link
             href="/"
             className="text-2xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity"
@@ -79,7 +79,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors -mr-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
